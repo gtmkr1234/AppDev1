@@ -41,7 +41,10 @@ TEMPLATE = '''<!DOCTYPE html>
 janapith_data = [{"year":2021,"awardees":"Krishna Gautam","language":"Hindi"},{"year":2022,"awardees":"Ritik Goyal","language":"Oria"},{"year":2015,"awardees":"Rajat Mishra","language":"English"}]
 def main():
     template = Template(TEMPLATE)
-    print(template.render(janapith_data=janapith_data))
+    content = template.render(janapith_data=janapith_data)
+    myfile = open("janapith.html",'w')
+    myfile.write(content)
+    myfile.close()
 
 if __name__ == '__main__':
     main()

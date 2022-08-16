@@ -24,11 +24,13 @@ TEMPLATE = '''<!DOCTYPE html>
                 </tr>
             </thead>
             <tbody>
+            {% for janapith in janapith_data %}
                 <tr>
-                    <td>{{ janapith_data["year"] }}</td>
-                    <td>{{ janapith_data["awardees"] }}</td>
-                    <td>{{ janapith_data["language"] }}</td>
+                    <td>{{ janapith["year"] }}</td>
+                    <td>{{ janapith["awardees"] }}</td>
+                    <td>{{ janapith["language"] }}</td>
                 </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
@@ -36,8 +38,7 @@ TEMPLATE = '''<!DOCTYPE html>
 </body>
 </html>'''
 
-janapith_data = {"year":2021,"awardees":"Krishna Gautam","language":"Hindi"}
-
+janapith_data = [{"year":2021,"awardees":"Krishna Gautam","language":"Hindi"},{"year":2022,"awardees":"Ritik Goyal","language":"Oria"},{"year":2015,"awardees":"Rajat Mishra","language":"English"}]
 def main():
     template = Template(TEMPLATE)
     print(template.render(janapith_data=janapith_data))

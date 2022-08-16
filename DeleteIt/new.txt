@@ -1,0 +1,58 @@
+CSS :- 
+C=Cascading (Cascade :- )
+S=Style
+S=Sheet
+Used to give designing to the webpage and website.
+webpage :-
+1. Inline
+2. Internal
+website
+Collection of webpages
+3.External
+
+Types:
+1.Inline
+2.Internal
+3.External
+
+1. Inline Style sheet:
+Used to give effects to particular element of HTML.
+Use style attribute to give the effects inside thr HTML element.
+Inside body tag use style attibute.
+Inside style attribute give property name and value that you want to use.
+
+2. Internal Style Sheet:
+Used to give designing for all the HTML elements in single page.
+Inside the Head tag use style tag to give the design for the various elements.
+Syntax:
+<head>
+    <style>
+        background-color: red;
+        color:white;
+    </style>
+</head>
+
+
+3.External Style Sheet :
+Used to give effects to websites.
+Wesite is collection of webpages.
+Can apply the effects ti multiple pages.
+Create separate file fir giving effects.
+With the extention .css
+Donot use HTML content in css file.
+
+Syntax :
+Use element name with braces nd give the property name and value.
+To use css file in HTML use the Head tag.
+Inside the head tag use link element.
+Attribute used inside linked element:-
+
+a.rel -- Denotes the relatonship with HTML.
+value = stylesheet
+b.href -- reference -- css file path.
+
+Color:-
+RGB - (Red Green Blue)
+values =0 to 255
+syntax :
+color : rgb(red,green,Blue)

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/AppDev1/experiment_sqlitedb/testdb.sqlite3" readonly="0" foreign_keys="" case_sensitive_like="" temp_store="" wal_autocheckpoint="" synchronous=""/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1338"/><column_width id="4" width="0"/></tab_structure><tab_browse><current_table name="0,0:"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE &quot;article_authors&quot; (
+	&quot;article_id&quot; INTEGER,
+	&quot;user_id&quot; INTEGER,
+	PRIMARY KEY(&quot;article_id&quot;,&quot;user_id&quot;),
+	FOREIGN KEY(&quot;user_id&quot;) REFERENCES &quot;user&quot;(&quot;user_id&quot;),
+	FOREIGN KEY(&quot;article_id&quot;) REFERENCES &quot;article&quot;(&quot;article_id&quot;)
+);</sql><sql name="SQL 2">select 
+	u.username as &quot;author_username&quot;
+from
+	user as u,
+	article_authors as aa
+WHERE
+	aa.article_id=1 AND
+	aa.user_id=u.user_id</sql><current_tab id="1"/></tab_sql></sqlb_project>

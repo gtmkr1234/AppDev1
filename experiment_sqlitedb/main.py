@@ -49,7 +49,7 @@ engine = create_engine("sqlite:///./testdb.sqlite3")
 if __name__ == '__main__':
     '''Using a session '''
     with Session(engine) as session:
-        articles = session.query(Article).filter(Article.article_id == 1).all()
+        articles = session.query(Article).filter(Article.article_id == 2).all()
         for article in articles:
             print("Article : {}".format(article.title))
             for author in article.authors:

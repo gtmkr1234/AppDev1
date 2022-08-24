@@ -69,9 +69,11 @@ if __name__ == '__main__':
             article_authors = ArticleAuthors(user_id=1, article_id=article.article_id)
             session.add(article_authors)'''
 
-            author = session.query(User).filter(User.username == "Krishna").one()
-            article = Article(title="NEW commits",content="By using in pythonic way")
-            article.authors.append(author)
+            author1 = session.query(User).filter(User.username == "Krishna").one()
+            author2 = session.query(User).filter(User.username == "narendra").one()
+            article = Article(title="NEW days",content="By assigning 2 authors")
+            article.authors.append(author1)
+            article.authors.append(author2)
             session.add(article)
 
         except:

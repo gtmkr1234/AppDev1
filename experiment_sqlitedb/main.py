@@ -33,7 +33,6 @@ class ArticleAuthors(Base):
 
 engine = create_engine("sqlite:///./testdb.sqlite3")
 
-
 # if __name__ == '__main__':
 #     stmt = select(User)
 #     print("---------- QUERY ----------")
@@ -45,12 +44,36 @@ engine = create_engine("sqlite:///./testdb.sqlite3")
 #             print(row)
 
 
+# if __name__ == '__main__':
+#     '''Using a session '''
+#     with Session(engine) as session:
+#         articles = session.query(Article).filter(Article.article_id == 2).all()
+#         for article in articles:
+#             print("Article : {}".format(article.title))
+#             for author in article.authors:
+#                 print("Authors : {}".format(author.username))
 
 if __name__ == '__main__':
-    '''Using a session '''
-    with Session(engine) as session:
-        articles = session.query(Article).filter(Article.article_id == 2).all()
-        for article in articles:
-            print("Article : {}".format(article.title))
-            for author in article.authors:
-                print("Authors : {}".format(author.username))
+    '''Using Transactions'''
+    with Session(engine, autoflush=False) as session:
+        session.begin()
+        try:
+            article = Article(title="My first Story", content="Story about my life")
+            session.add(article)
+            session.flush()
+            print("------ Get Article ID------")
+            print(article.article_id)
+
+            #raise Exception("Dummy Error")
+
+            article_authors = ArticleAuthors(user_id=1, article_id=article.article_id)
+            session.add(article_authors)
+
+        except:
+            print("Rolling back...")
+            session.rollback()
+            raise
+
+        else:
+            print("Committing the changes")
+            session.commit()

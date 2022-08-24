@@ -22,6 +22,7 @@ class Article(Base):
     article_id = Column(Integer,autoincrement = True, primary_key = True)
     title = Column(String)
     comtent = Column(String)
+    authors = relationship("User",secondary = "article_authors")
 
 class ArticleAuthors(Base):
     __tablename__ = 'article_authors'

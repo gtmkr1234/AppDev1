@@ -31,4 +31,15 @@ class ArticleAuthors(Base):
     article_id = Column(Integer, ForeignKey("article.article_id"), primary_key=True, nullable=False)
 
 
-engine = create_engine("sqlite:///.testdb.sqlite3")
+engine = create_engine("sqlite:///./testdb.sqlite3")
+
+
+if __name__ == '__main__':
+    stmt = select(User)
+    print("---------- QUERY ----------")
+    print(stmt)
+
+    with engine.connect() as conn:
+        print("---------- RESULT ----------")
+        for row in conn.execute(stmt):
+            print(row)

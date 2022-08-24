@@ -58,7 +58,7 @@ if __name__ == '__main__':
     with Session(engine, autoflush=False) as session:
         session.begin()
         try:
-            article = Article(title="My first Story", content="Story about my life")
+            '''article = Article(title="My first Story", content="Story about my life")
             session.add(article)
             session.flush()
             print("------ Get Article ID------")
@@ -67,7 +67,12 @@ if __name__ == '__main__':
             #raise Exception("Dummy Error")
 
             article_authors = ArticleAuthors(user_id=1, article_id=article.article_id)
-            session.add(article_authors)
+            session.add(article_authors)'''
+
+            author = session.query(User).filter(User.username == "Krishna").one()
+            article = Article(title="NEW commits",content="By using in pythonic way")
+            article.authors.append(author)
+            session.add(article)
 
         except:
             print("Rolling back...")

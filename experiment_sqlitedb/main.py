@@ -21,7 +21,7 @@ class Article(Base):
     __tablename__ = 'article'
     article_id = Column(Integer, autoincrement=True, primary_key=True)
     title = Column(String)
-    comtent = Column(String)
+    content = Column(String)
     authors = relationship("User", secondary="article_authors")
 
 
@@ -34,12 +34,23 @@ class ArticleAuthors(Base):
 engine = create_engine("sqlite:///./testdb.sqlite3")
 
 
-if __name__ == '__main__':
-    stmt = select(User)
-    print("---------- QUERY ----------")
-    print(stmt)
+# if __name__ == '__main__':
+#     stmt = select(User)
+#     print("---------- QUERY ----------")
+#     print(stmt)
+#
+#     with engine.connect() as conn:
+#         print("---------- RESULT ----------")
+#         for row in conn.execute(stmt):
+#             print(row)
 
-    with engine.connect() as conn:
-        print("---------- RESULT ----------")
-        for row in conn.execute(stmt):
-            print(row)
+
+
+if __name__ == '__main__':
+    '''Using a session '''
+    with Session(engine) as session:
+        articles = session.query(Article).filter(Article.article_id == 1).all()
+        for article in articles:
+            print("Article : {}".format(article.title))
+            for author in article.authors:
+                print("Authors : {}".format(author.username))

@@ -20,21 +20,22 @@ class User(db.Model):
 
 class Article(db.Model):
     __tablename__ = 'article'
-    article_id = db.Column(db.Integer,autoincrement=True, primary_key=True)
+    article_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String, unique=True)
     content = db.Column(db.String, unique=True)
-    authors = db.relationship("User",secondary="article_authors")
+    authors = db.relationship("User", secondary="article_authors")
 
 
 class ArticleAuthors(db.Model):
     __tablename__ = 'article_authors'
-    article_id = db.Column(db.Integer,db.ForeignKey("Article.article_id"), primary_key=True, nullable=False)
-    user_id = db.Column(db.Integer,db.ForeignKey("User.user_id"), primary_key=True, nullable=False)
+    user_id = db.Column(db.Integer,  db.ForeignKey("user.user_id"), primary_key=True, nullable=False)
+    article_id = db.Column(db.Integer, db.ForeignKey("article.article_id"), primary_key=True, nullable=False)
 
 
 @app.route("/",methods =["GET","POST"] )
-def home():
-    return render_template("home.html")
+def articles():
+    articles = Article.query.all()
+    return render_template("articles.html",articles=articles)
 
 if __name__ == '__main__':
     app.run(

@@ -41,7 +41,7 @@ def articles():
 @app.route("/articles_by/<user_name>", methods=["GET", "POST"])
 def getArticles(user_name):
     articles = Article.query.filter(Article.authors.any(username=user_name))
-    return render_template("articles.html", articles=articles)
+    return render_template("article_by_authors.html", articles=articles)
 
 
 if __name__ == '__main__':
